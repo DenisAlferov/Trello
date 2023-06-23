@@ -30,7 +30,6 @@ button {
     background-color: rgba(255, 105, 180, 0.76);
     border: 1px solid gray;
     width: 200px;
-    height: 50px;
     font-size: 24px;
     text-align: center;
 }
@@ -54,15 +53,11 @@ button {
     border: 1px solid gray;
     padding: 15px;
 }
-.todoBlock,
-.progressBlock,
-.doneBlock{
+.todoBlock, .progressBlock, .doneBlock{
     width: 30%;
     margin: 0 auto;
 }
-.todoBlockHeader,
-.progressBlockHeader,
-.doneBlockHeader {
+.todoBlockHeader, .progressBlockHeader, .doneBlockHeader {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -102,26 +97,20 @@ button {
     font-size: 16px;
     padding: 10px;
 }
-.todoBlockHeaderCounter,
-.progressBlockHeaderCounter,
-.doneBlockHeaderCounter {
+.todoBlockHeaderCounter, .progressBlockHeaderCounter, .doneBlockHeaderCounter {
     font-size: 20px;
     font-weight: 700;
 }
-.todoBlockContainer,
-.progressBlockContainer,
-.doneBlockContainer {
+.todoBlockContainer, .progressBlockContainer, .doneBlockContainer {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     width: 100%;
 }
-.newWindowContainer,
-.editNewWindowContainer {
+.newWindowContainer, .editNewWindowContainer {
     display: none;
 }
-.newWindowDoneContainer,
-.lengthNewWindowContainer {
+.newWindowDoneContainer, .lengthNewWindowContainer {
     background-color: #c09d9d;
     display: none;
 }
@@ -138,9 +127,7 @@ button {
     flex-direction: column;
     background-color: rgba(159, 255, 127, 0.56);
 }
-.newWindowTitle,
-.doneNewWindowTitle,
-.editNewWindowTitle {
+.newWindowTitle, .doneNewWindowTitle, .editNewWindowTitle {
     margin-bottom: 15px;
     padding: 5px;
     text-align: center;
@@ -155,8 +142,7 @@ button {
     font-size: 16px;
     border-radius: 10px;
 }
-.newWindowDescription,
-.editNewWindowDescription {
+.newWindowDescription, .editNewWindowDescription {
     width: 100%;
     min-height: 100px;
     padding: 10px 15px;
@@ -165,9 +151,7 @@ button {
     font-size: 16px;
     border-radius: 10px;
 }
-.newWindowBtnContainer,
-.doneNewWindowBtnContainer,
-.editNewWindowBtnContainer {
+.newWindowBtnContainer, .doneNewWindowBtnContainer, .editNewWindowBtnContainer {
     display: flex;
     justify-content: space-around;
 }
@@ -187,11 +171,7 @@ button {
     background-color: rgba(0, 128, 0, 0.43);
     border-radius: 10px;
 }
-.newWindowCancelBtn,
-.newWindowAddBtn,
-.doneNewWindowYesBtn,
-.doneNewWindowNoBtn,
-.lengthNewWindowBtn{
+.newWindowCancelBtn, .newWindowAddBtn, .doneNewWindowYesBtn, .doneNewWindowNoBtn, .lengthNewWindowBtn{
     padding: 10px;
 }
 .editNewWindowCancelBtn{
@@ -208,10 +188,7 @@ button {
     display: block;
     margin: 0 auto
 }
-.newWindowCancelBtn:hover,
-.newWindowAddBtn:hover,
-.doneNewWindowYesBtn:hover,
-.doneNewWindowNoBtn:hover {
+.newWindowCancelBtn:hover, .newWindowAddBtn:hover, .doneNewWindowYesBtn:hover, .doneNewWindowNoBtn:hover {
     background-color: #40a7b4;
 }
 .select {
@@ -225,9 +202,7 @@ button {
     margin-top: 10px;
     border-radius: 10px;
 }
-.itemBlockHeader,
-.itemBlockMain,
-.itemBlockFooter {
+.itemBlockHeader, .itemBlockMain, .itemBlockFooter {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -249,15 +224,12 @@ button {
     justify-content: space-between;
     gap: 10px;
 }
-.editBtn,
-.delBtn {
+.editBtn, .delBtn {
     padding: 5px;
     font-size: 16px;
     border-radius: 5px;
 }
-.editBtn:hover,
-.delBtn:hover,
-.moveToProgressBtn:hover {
+.editBtn:hover, .delBtn:hover, .moveToProgressBtn:hover {
     transition: 0.3s;
     background-color: #40a7b4;
 }

@@ -8,26 +8,52 @@ const trelloLogo = document.createElement('h1');
 const timeNow = document.createElement('div');
 const mainBlock = document.getElementById('main_block');
 const mainPage = document.getElementById('mainPage');
-
 const todoBlock = document.createElement('div');
 const todoBlockHeader = document.createElement('div');
 const todoBlockHeaderTitle = document.createElement('h2');
 const todoBlockHeaderCounter = document.createElement('div');
 const todoBlockContainer = document.createElement('div');
 const todoBlockBtn = document.createElement('button');
-
 const progressBlock = document.createElement('div');
 const progressBlockHeader = document.createElement('div');
 const progressBlockHeaderTitle = document.createElement('h2');
 const progressBlockHeaderCounter = document.createElement('div');
 const progressBlockContainer = document.createElement('div');
-
 const doneBlock = document.createElement('div');
 const doneBlockHeader = document.createElement('div');
 const doneBlockHeaderTitle = document.createElement('h2');
 const doneBlockHeaderCounter = document.createElement('div');
 const doneBlockContainer = document.createElement('div');
 const doneBlockBtn = document.createElement('button');
+const newWindowContainer = document.createElement('div');
+const newWindowBtnContainer = document.createElement('div');
+const newWindowTitle = document.createElement('input');
+const newWindowDescription = document.createElement('textarea');
+const newWindowUser = document.createElement('select');
+const newWindowCancelBtn = document.createElement('button');
+const newWindowAddBtn = document.createElement('button');
+const editNewWindowContainer = document.createElement('div');
+const editNewWindowBtnContainer = document.createElement('div');
+const editNewWindowTitle = document.createElement('input');
+const editNewWindowDescription = document.createElement('textarea');
+const editNewWindowUser = document.createElement('select');
+const editNewWindowCancelBtn = document.createElement('button');
+const editNewWindowAddBtn = document.createElement('button');
+const doneNewWindowContainer = document.createElement('div');
+const doneNewWindowBtnContainer = document.createElement('div');
+const doneNewWindowTitle = document.createElement('div');
+const doneNewWindowYesBtn = document.createElement('button');
+const doneNewWindowNoBtn = document.createElement('button');
+const lengthNewWindowContainer = document.createElement('div');
+const lengthNewWindowTitle = document.createElement('div');
+const lengthNewWindowBtn = document.createElement('button');
+
+let todoArr = [];
+let progressArr = [];
+let doneArr = [];
+let savedTodoArr = JSON.parse(localStorage.getItem('todoArr')) || [];
+let savedProgressArr = JSON.parse(localStorage.getItem('progressArr')) || [];
+let savedDoneArr = JSON.parse(localStorage.getItem('doneArr')) || [];
 
 header.append(trelloLogo, timeNow);
 mainBlock.append(todoBlock, progressBlock, doneBlock);
@@ -37,26 +63,57 @@ doneBlock.append(doneBlockHeader, doneBlockContainer, doneBlockBtn);
 todoBlockHeader.append(todoBlockHeaderTitle, todoBlockHeaderCounter);
 progressBlockHeader.append(progressBlockHeaderTitle, progressBlockHeaderCounter);
 doneBlockHeader.append(doneBlockHeaderTitle, doneBlockHeaderCounter);
+mainPage.append(newWindowContainer);
+newWindowContainer.append(newWindowTitle, newWindowDescription, newWindowBtnContainer);
+newWindowBtnContainer.append(newWindowUser, newWindowCancelBtn, newWindowAddBtn);
+mainPage.append(editNewWindowContainer);
+editNewWindowContainer.append(editNewWindowTitle, editNewWindowDescription, editNewWindowBtnContainer);
+editNewWindowBtnContainer.append(editNewWindowUser, editNewWindowCancelBtn, editNewWindowAddBtn);
+mainPage.append(doneNewWindowContainer);
+doneNewWindowContainer.append(doneNewWindowTitle, doneNewWindowBtnContainer);
+doneNewWindowBtnContainer.append(doneNewWindowYesBtn, doneNewWindowNoBtn);
+mainPage.append(lengthNewWindowContainer);
+lengthNewWindowContainer.append(lengthNewWindowTitle, lengthNewWindowBtn);
 
 trelloLogo.classList.add('trelloLogo');
 timeNow.classList.add('timeNow');
 todoBlock.classList.add('todoBlock');
 progressBlock.classList.add('progressBlock');
 doneBlock.classList.add('doneBlock');
-
 todoBlockHeader.classList.add('todoBlockHeader');
 progressBlockHeader.classList.add('progressBlockHeader');
 doneBlockHeader.classList.add('doneBlockHeader');
-
 todoBlockContainer.classList.add('todoBlockContainer');
 progressBlockContainer.classList.add('progressBlockContainer');
 doneBlockContainer.classList.add('doneBlockContainer');
-
 todoBlockBtn.classList.add('todoBlockBtn');
 doneBlockBtn.classList.add('doneBlockBtn');
 todoBlockHeaderCounter.classList.add('todoBlockHeaderCounter');
 progressBlockHeaderCounter.classList.add('progressBlockHeaderCounter');
 doneBlockHeaderCounter.classList.add('doneBlockHeaderCounter');
+newWindowUser.classList.add('select');
+newWindowContainer.classList.add('newWindowContainer');
+newWindowTitle.classList.add('newWindowTitle');
+newWindowDescription.classList.add('newWindowDescription');
+newWindowBtnContainer.classList.add('newWindowBtnContainer');
+newWindowCancelBtn.classList.add('newWindowCancelBtn');
+newWindowAddBtn.classList.add('newWindowAddBtn');
+editNewWindowUser.classList.add('select');
+editNewWindowContainer.classList.add('editNewWindowContainer');
+editNewWindowTitle.classList.add('editNewWindowTitle');
+editNewWindowDescription.classList.add('editNewWindowDescription');
+editNewWindowBtnContainer.classList.add('editNewWindowBtnContainer');
+editNewWindowCancelBtn.classList.add('editNewWindowCancelBtn');
+editNewWindowAddBtn.classList.add('editNewWindowAddBtn');
+doneNewWindowContainer.classList.add('newWindowDoneContainer');
+doneNewWindowTitle.classList.add('doneNewWindowTitle');
+doneNewWindowBtnContainer.classList.add('doneNewWindowBtnContainer');
+doneNewWindowYesBtn.classList.add('doneNewWindowYesBtn');
+doneNewWindowNoBtn.classList.add('doneNewWindowNoBtn');
+lengthNewWindowContainer.classList.add('lengthNewWindowContainer');
+lengthNewWindowTitle.classList.add('lengthNewWindowTitle');
+lengthNewWindowBtn.classList.add('lengthNewWindowBtn');
+
 
 trelloLogo.innerText = 'Trello v.7.33b';
 todoBlockHeaderTitle.innerText = 'TODO:';
@@ -64,95 +121,29 @@ progressBlockHeaderTitle.innerText = 'IN PROGRESS:';
 doneBlockHeaderTitle.innerText = 'DONE:';
 todoBlockBtn.innerText = 'NEW TODO';
 doneBlockBtn.innerText = 'DELETE ALL';
-
-const newWindowContainer = document.createElement('div');
-const newWindowBtnContainer = document.createElement('div');
-const newWindowTitle = document.createElement('input');
-const newWindowDescription = document.createElement('textarea');
-const newWindowUser = document.createElement('select');
-const newWindowCancelBtn = document.createElement('button');
-const newWindowAddBtn = document.createElement('button');
+newWindowCancelBtn.innerText = 'Cancel';
+newWindowAddBtn.innerText = 'Confirm';
+editNewWindowCancelBtn.innerText = 'Cancel';
+editNewWindowAddBtn.innerText = 'Confirm';
+todoBlockHeaderCounter.innerText = '0';
+progressBlockHeaderCounter.innerText = '0';
+doneBlockHeaderCounter.innerText = '0';
+doneNewWindowNoBtn.innerText = 'No';
+doneNewWindowYesBtn.innerText = 'Yes';
+doneNewWindowTitle.innerText = 'Did you do everything?';
+lengthNewWindowBtn.innerText = 'Well done';
+lengthNewWindowTitle.innerText = 'You have to do less that 6 todo';
 
 newWindowTitle.setAttribute('placeholder', 'Title');
 newWindowDescription.setAttribute('placeholder', 'Description');
-
-newWindowUser.classList.add('select');
+editNewWindowTitle.setAttribute('placeholder', 'Title');
+editNewWindowDescription.setAttribute('placeholder', 'Description');
 
 const getUsers = () => {
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
         .then(users => { users.forEach(people => { renderUser(people.username, newWindowUser, editNewWindowUser) }) });
 };
-
-getUsers();
-
-mainPage.append(newWindowContainer);
-newWindowContainer.append(newWindowTitle, newWindowDescription, newWindowBtnContainer);
-newWindowBtnContainer.append(newWindowUser, newWindowCancelBtn, newWindowAddBtn);
-
-newWindowCancelBtn.innerText = 'Cancel';
-newWindowAddBtn.innerText = 'Confirm';
-
-newWindowContainer.classList.add('newWindowContainer');
-newWindowTitle.classList.add('newWindowTitle');
-newWindowDescription.classList.add('newWindowDescription');
-newWindowBtnContainer.classList.add('newWindowBtnContainer');
-newWindowCancelBtn.classList.add('newWindowCancelBtn');
-newWindowAddBtn.classList.add('newWindowAddBtn');
-
-todoBlockBtn.addEventListener('click', () => {
-    showAddNewWindow(newWindowContainer);
-    hideAddNewWindow(doneNewWindowContainer);
-    hideAddNewWindow(lengthNewWindowContainer);
-});
-
-newWindowCancelBtn.addEventListener('click', () => {
-    newWindowTitle.value = '';
-    newWindowDescription.value = '';
-    hideAddNewWindow(newWindowContainer);
-});
-
-const editNewWindowContainer = document.createElement('div');
-const editNewWindowBtnContainer = document.createElement('div');
-const editNewWindowTitle = document.createElement('input');
-const editNewWindowDescription = document.createElement('textarea');
-const editNewWindowUser = document.createElement('select');
-const editNewWindowCancelBtn = document.createElement('button');
-const editNewWindowAddBtn = document.createElement('button');
-
-editNewWindowTitle.setAttribute('placeholder', 'Title');
-editNewWindowDescription.setAttribute('placeholder', 'Description');
-
-editNewWindowUser.classList.add('select');
-
-mainPage.append(editNewWindowContainer);
-editNewWindowContainer.append(editNewWindowTitle, editNewWindowDescription, editNewWindowBtnContainer);
-editNewWindowBtnContainer.append(editNewWindowUser, editNewWindowCancelBtn, editNewWindowAddBtn);
-
-editNewWindowCancelBtn.innerText = 'Cancel';
-editNewWindowAddBtn.innerText = 'Confirm';
-
-editNewWindowContainer.classList.add('editNewWindowContainer');
-editNewWindowTitle.classList.add('editNewWindowTitle');
-editNewWindowDescription.classList.add('editNewWindowDescription');
-editNewWindowBtnContainer.classList.add('editNewWindowBtnContainer');
-editNewWindowCancelBtn.classList.add('editNewWindowCancelBtn');
-editNewWindowAddBtn.classList.add('editNewWindowAddBtn');
-
-editNewWindowCancelBtn.addEventListener('click', () => {
-    hideAddNewWindow(editNewWindowContainer);
-});
-
-let todoArr = [];
-let progressArr = [];
-let doneArr = [];
-let savedTodoArr = JSON.parse(localStorage.getItem('todoArr')) || [];
-let savedProgressArr = JSON.parse(localStorage.getItem('progressArr')) || [];
-let savedDoneArr = JSON.parse(localStorage.getItem('doneArr')) || [];
-
-todoBlockHeaderCounter.innerText = '0';
-progressBlockHeaderCounter.innerText = '0';
-doneBlockHeaderCounter.innerText = '0';
 
 const handleTodo = () => {
     const todoItem = createTodoItem(newWindowTitle.value, newWindowDescription.value, newWindowUser.value);
@@ -246,8 +237,6 @@ const todoBtnFunction = (itemBlock) => {
     };
     };
 
-newWindowAddBtn.addEventListener('click', handleTodo);
-
 const progressBtnFunction = (itemBlock) => {
     itemBlock.addEventListener('click', (event) => {
         if (event.target.dataset.name === 'moveToTodo') {
@@ -298,26 +287,6 @@ const doneBtnFunction = (itemBlock) => {
     });
 };
 
-const doneNewWindowContainer = document.createElement('div');
-const doneNewWindowBtnContainer = document.createElement('div');
-const doneNewWindowTitle = document.createElement('div');
-const doneNewWindowYesBtn = document.createElement('button');
-const doneNewWindowNoBtn = document.createElement('button');
-
-mainPage.append(doneNewWindowContainer);
-doneNewWindowContainer.append(doneNewWindowTitle, doneNewWindowBtnContainer);
-doneNewWindowBtnContainer.append(doneNewWindowYesBtn, doneNewWindowNoBtn);
-
-doneNewWindowNoBtn.innerText = 'No';
-doneNewWindowYesBtn.innerText = 'Yes';
-doneNewWindowTitle.innerText = 'Did you do it?';
-
-doneNewWindowContainer.classList.add('newWindowDoneContainer');
-doneNewWindowTitle.classList.add('doneNewWindowTitle');
-doneNewWindowBtnContainer.classList.add('doneNewWindowBtnContainer');
-doneNewWindowYesBtn.classList.add('doneNewWindowYesBtn');
-doneNewWindowNoBtn.classList.add('doneNewWindowNoBtn');
-
 doneBlockBtn.addEventListener('click', () => {
     if (!doneArr.length) { return }
 
@@ -338,21 +307,23 @@ doneBlockBtn.addEventListener('click', () => {
     });
 });
 
-const lengthNewWindowContainer = document.createElement('div');
-const lengthNewWindowTitle = document.createElement('div');
-const lengthNewWindowBtn = document.createElement('button');
+todoBlockBtn.addEventListener('click', () => {
+    showAddNewWindow(newWindowContainer);
+    hideAddNewWindow(doneNewWindowContainer);
+    hideAddNewWindow(lengthNewWindowContainer);
+});
 
-mainPage.append(lengthNewWindowContainer);
-lengthNewWindowContainer.append(lengthNewWindowTitle, lengthNewWindowBtn);
+newWindowCancelBtn.addEventListener('click', () => {
+    newWindowTitle.value = '';
+    newWindowDescription.value = '';
+    hideAddNewWindow(newWindowContainer);
+});
 
-lengthNewWindowBtn.innerText = 'Well done';
+editNewWindowCancelBtn.addEventListener('click', () => {
+    hideAddNewWindow(editNewWindowContainer);
+});
 
-lengthNewWindowContainer.classList.add('lengthNewWindowContainer');
-lengthNewWindowTitle.classList.add('lengthNewWindowTitle');
-
-lengthNewWindowBtn.classList.add('lengthNewWindowBtn');
-
-lengthNewWindowTitle.innerText = 'You have to do less that 6 todo';
+newWindowAddBtn.addEventListener('click', handleTodo);
 
 lengthNewWindowBtn.addEventListener('click', () => {
     hideAddNewWindow(lengthNewWindowContainer);
@@ -383,6 +354,4 @@ if (savedProgressArr.length) {
 }
 
 currentTime(timeNow);
-
-
-
+getUsers();
