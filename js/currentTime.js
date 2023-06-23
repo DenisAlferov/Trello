@@ -14,7 +14,6 @@ export const currentTime = (timeNow) => {
     min = updateTime(min);
     sec = updateTime(sec);
 
-    console.log(`${hour} : ${min} : ${sec}`)
     timeNow.innerText = `${hour} : ${min} : ${sec}`;
     const t = setTimeout(() => { currentTime(timeNow) }, 1000);
 };

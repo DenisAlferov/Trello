@@ -150,9 +150,9 @@ let savedTodoArr = JSON.parse(localStorage.getItem('todoArr')) || [];
 let savedProgressArr = JSON.parse(localStorage.getItem('progressArr')) || [];
 let savedDoneArr = JSON.parse(localStorage.getItem('doneArr')) || [];
 
-todoBlockHeaderCounter.innerText = 'todoArr.length';
-progressBlockHeaderCounter.innerText = 'progressArr.length';
-doneBlockHeaderCounter.innerText = 'doneArr.length';
+todoBlockHeaderCounter.innerText = '0';
+progressBlockHeaderCounter.innerText = '0';
+doneBlockHeaderCounter.innerText = '0';
 
 const handleTodo = () => {
     const todoItem = createTodoItem(newWindowTitle.value, newWindowDescription.value, newWindowUser.value);
@@ -244,7 +244,7 @@ const todoBtnFunction = (itemBlock) => {
     itemBlock.onclick = () => {
         itemBlock.style.backgroundColor = 'rgb('+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+0.5+')';
     };
-};
+    };
 
 newWindowAddBtn.addEventListener('click', handleTodo);
 
@@ -373,7 +373,6 @@ if (savedTodoArr.length) {
         const itemContainer = renderTodoItem(todoBlockContainer, todo);
         todoBtnFunction(itemContainer);
         getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
-
     }
 }
 
@@ -384,5 +383,6 @@ if (savedProgressArr.length) {
 }
 
 currentTime(timeNow);
+
 
 
