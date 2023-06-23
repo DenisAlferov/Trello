@@ -1,5 +1,5 @@
 import { currentTime } from "./currentTime.js";
-import { showAddNewWindow, hideAddNewWindow, updateLocalStorage, getAmount, changeStyletoProgress} from "./helper.js";
+import { showAddNewWindow, hideAddNewWindow, updateLocalStorage, getCounter, changeStyletoProgress} from "./helper.js";
 import { createTodoItem } from "./createtodoitem.js";
 import { renderTodoItem, renderUser } from "./render.js";
 
@@ -12,20 +12,20 @@ const mainPage = document.getElementById('mainPage');
 const todoBlock = document.createElement('div');
 const todoBlockHeader = document.createElement('div');
 const todoBlockHeaderTitle = document.createElement('h2');
-const todoBlockHeaderAmount = document.createElement('div');
+const todoBlockHeaderCounter = document.createElement('div');
 const todoBlockContainer = document.createElement('div');
 const todoBlockBtn = document.createElement('button');
 
 const progressBlock = document.createElement('div');
 const progressBlockHeader = document.createElement('div');
 const progressBlockHeaderTitle = document.createElement('h2');
-const progressBlockHeaderAmount = document.createElement('div');
+const progressBlockHeaderCounter = document.createElement('div');
 const progressBlockContainer = document.createElement('div');
 
 const doneBlock = document.createElement('div');
 const doneBlockHeader = document.createElement('div');
 const doneBlockHeaderTitle = document.createElement('h2');
-const doneBlockHeaderAmount = document.createElement('div');
+const doneBlockHeaderCounter = document.createElement('div');
 const doneBlockContainer = document.createElement('div');
 const doneBlockBtn = document.createElement('button');
 
@@ -34,9 +34,9 @@ mainBlock.append(todoBlock, progressBlock, doneBlock);
 todoBlock.append(todoBlockHeader, todoBlockContainer, todoBlockBtn);
 progressBlock.append(progressBlockHeader, progressBlockContainer);
 doneBlock.append(doneBlockHeader, doneBlockContainer, doneBlockBtn);
-todoBlockHeader.append(todoBlockHeaderTitle, todoBlockHeaderAmount);
-progressBlockHeader.append(progressBlockHeaderTitle, progressBlockHeaderAmount);
-doneBlockHeader.append(doneBlockHeaderTitle, doneBlockHeaderAmount);
+todoBlockHeader.append(todoBlockHeaderTitle, todoBlockHeaderCounter);
+progressBlockHeader.append(progressBlockHeaderTitle, progressBlockHeaderCounter);
+doneBlockHeader.append(doneBlockHeaderTitle, doneBlockHeaderCounter);
 
 trelloLogo.classList.add('trelloLogo');
 timeNow.classList.add('timeNow');
@@ -54,9 +54,9 @@ doneBlockContainer.classList.add('doneBlockContainer');
 
 todoBlockBtn.classList.add('todoBlockBtn');
 doneBlockBtn.classList.add('doneBlockBtn');
-todoBlockHeaderAmount.classList.add('todoBlockHeaderAmount');
-progressBlockHeaderAmount.classList.add('progressBlockHeaderAmount');
-doneBlockHeaderAmount.classList.add('doneBlockHeaderAmount');
+todoBlockHeaderCounter.classList.add('todoBlockHeaderCounter');
+progressBlockHeaderCounter.classList.add('progressBlockHeaderCounter');
+doneBlockHeaderCounter.classList.add('doneBlockHeaderCounter');
 
 trelloLogo.innerText = 'Trello v.7.33b';
 todoBlockHeaderTitle.innerText = 'TODO:';
@@ -78,7 +78,6 @@ newWindowDescription.setAttribute('placeholder', 'Description');
 
 newWindowUser.classList.add('select');
 
-
 const getUsers = () => {
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
@@ -86,7 +85,6 @@ const getUsers = () => {
 };
 
 getUsers();
-
 
 mainPage.append(newWindowContainer);
 newWindowContainer.append(newWindowTitle, newWindowDescription, newWindowBtnContainer);
@@ -113,9 +111,6 @@ newWindowCancelBtn.addEventListener('click', () => {
     newWindowDescription.value = '';
     hideAddNewWindow(newWindowContainer);
 });
-
-
-
 
 const editNewWindowContainer = document.createElement('div');
 const editNewWindowBtnContainer = document.createElement('div');
@@ -148,7 +143,6 @@ editNewWindowCancelBtn.addEventListener('click', () => {
     hideAddNewWindow(editNewWindowContainer);
 });
 
-
 let todoArr = [];
 let progressArr = [];
 let doneArr = [];
@@ -156,9 +150,9 @@ let savedTodoArr = JSON.parse(localStorage.getItem('todoArr')) || [];
 let savedProgressArr = JSON.parse(localStorage.getItem('progressArr')) || [];
 let savedDoneArr = JSON.parse(localStorage.getItem('doneArr')) || [];
 
-todoBlockHeaderAmount.innerText = todoArr.length;
-progressBlockHeaderAmount.innerText = progressArr.length;
-doneBlockHeaderAmount.innerText = doneArr.length;
+todoBlockHeaderCounter.innerText = 'todoArr.length';
+progressBlockHeaderCounter.innerText = 'progressArr.length';
+doneBlockHeaderCounter.innerText = 'doneArr.length';
 
 const handleTodo = () => {
     const todoItem = createTodoItem(newWindowTitle.value, newWindowDescription.value, newWindowUser.value);
@@ -175,7 +169,7 @@ const handleTodo = () => {
     const itemContainer = renderTodoItem(todoBlockContainer, todoItem);
     todoBtnFunction(itemContainer);
 
-    getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+    getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
     updateLocalStorage(todoArr, progressArr, doneArr);
 };
 
@@ -185,10 +179,9 @@ const handleProgressTodo = (todoItem) => {
     changeStyletoProgress(progressItemContainer);
 
     progressBtnFunction(progressItemContainer);
-    getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+    getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
     updateLocalStorage(todoArr, progressArr, doneArr);
-}
-
+};
 
 const todoBtnFunction = (itemBlock) => {
     itemBlock.addEventListener('click', (event) => {
@@ -197,10 +190,10 @@ const todoBtnFunction = (itemBlock) => {
             event.currentTarget.remove();
 
             todoArr = todoArr.filter(todo => +todoID !== +todo.id);
-            getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+            getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
             updateLocalStorage(todoArr, progressArr, doneArr);
         }
-    })
+    });
 
     itemBlock.addEventListener('click', (event) => {
         if (event.target.dataset.name === 'moveToProgress') {
@@ -215,13 +208,12 @@ const todoBtnFunction = (itemBlock) => {
 
                 let item = todoArr.find(todo => +todoID === +todo.id);
                 todoArr = todoArr.filter(todo => +todoID !== +todo.id);
-                getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+                getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
                 handleProgressTodo(item);
                 updateLocalStorage(todoArr, progressArr, doneArr);
             }
         }
-    })
-
+    });
 
     itemBlock.addEventListener('click', (event) => {
         if (event.target.dataset.name === 'editBtn') {
@@ -243,8 +235,16 @@ const todoBtnFunction = (itemBlock) => {
                 location.reload()
             });
         }
-    })
-}
+    });
+
+    const getRandomStart = (min, max) => {
+        return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    itemBlock.onclick = () => {
+        itemBlock.style.backgroundColor = 'rgb('+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+0.5+')';
+    };
+};
 
 newWindowAddBtn.addEventListener('click', handleTodo);
 
@@ -261,10 +261,10 @@ const progressBtnFunction = (itemBlock) => {
             todoArr.push(todoItem);
 
             progressArr = progressArr.filter(todo => +todoID !== +todo.id);
-            getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+            getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
             updateLocalStorage(todoArr, progressArr, doneArr);
         }
-    })
+    });
 
     itemBlock.addEventListener('click', (event) => {
         if (event.target.dataset.name === 'moveToDone') {
@@ -279,11 +279,11 @@ const progressBtnFunction = (itemBlock) => {
             doneBtnFunction(itemContainer);
 
             progressArr = progressArr.filter(todo => +todoID !== +todo.id);
-            getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+            getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
             updateLocalStorage(todoArr, progressArr, doneArr);
         }
-    })
-}
+    });
+};
 
 const doneBtnFunction = (itemBlock) => {
     itemBlock.addEventListener('click', (event) => {
@@ -292,12 +292,11 @@ const doneBtnFunction = (itemBlock) => {
             event.currentTarget.remove();
 
             doneArr = doneArr.filter(todo => +todoID !== +todo.id);
-            getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+            getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
             updateLocalStorage(todoArr, progressArr, doneArr);
         }
-    })
-}
-
+    });
+};
 
 const doneNewWindowContainer = document.createElement('div');
 const doneNewWindowBtnContainer = document.createElement('div');
@@ -307,11 +306,11 @@ const doneNewWindowNoBtn = document.createElement('button');
 
 mainPage.append(doneNewWindowContainer);
 doneNewWindowContainer.append(doneNewWindowTitle, doneNewWindowBtnContainer);
-
 doneNewWindowBtnContainer.append(doneNewWindowYesBtn, doneNewWindowNoBtn);
 
 doneNewWindowNoBtn.innerText = 'No';
 doneNewWindowYesBtn.innerText = 'Yes';
+doneNewWindowTitle.innerText = 'Did you do it?';
 
 doneNewWindowContainer.classList.add('newWindowDoneContainer');
 doneNewWindowTitle.classList.add('doneNewWindowTitle');
@@ -319,15 +318,12 @@ doneNewWindowBtnContainer.classList.add('doneNewWindowBtnContainer');
 doneNewWindowYesBtn.classList.add('doneNewWindowYesBtn');
 doneNewWindowNoBtn.classList.add('doneNewWindowNoBtn');
 
-doneNewWindowTitle.innerText = 'Are you sure?'
-
 doneBlockBtn.addEventListener('click', () => {
     if (!doneArr.length) { return }
 
     showAddNewWindow(doneNewWindowContainer);
     hideAddNewWindow(newWindowContainer);
     hideAddNewWindow(lengthNewWindowContainer);
-
 
     doneNewWindowNoBtn.addEventListener('click', () => {
         hideAddNewWindow(doneNewWindowContainer);
@@ -337,12 +333,10 @@ doneBlockBtn.addEventListener('click', () => {
         doneBlockContainer.innerHTML = '';
         doneArr.length = 0;
         updateLocalStorage(todoArr, progressArr, doneArr);
-        getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+        getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
         hideAddNewWindow(doneNewWindowContainer);
     });
 });
-
-
 
 const lengthNewWindowContainer = document.createElement('div');
 const lengthNewWindowTitle = document.createElement('div');
@@ -351,25 +345,25 @@ const lengthNewWindowBtn = document.createElement('button');
 mainPage.append(lengthNewWindowContainer);
 lengthNewWindowContainer.append(lengthNewWindowTitle, lengthNewWindowBtn);
 
-lengthNewWindowBtn.innerText = 'Ok';
+lengthNewWindowBtn.innerText = 'Well done';
 
 lengthNewWindowContainer.classList.add('lengthNewWindowContainer');
 lengthNewWindowTitle.classList.add('lengthNewWindowTitle');
 
 lengthNewWindowBtn.classList.add('lengthNewWindowBtn');
 
-lengthNewWindowTitle.innerText = 'You have to do less that 6 todo'
+lengthNewWindowTitle.innerText = 'You have to do less that 6 todo';
 
 lengthNewWindowBtn.addEventListener('click', () => {
     hideAddNewWindow(lengthNewWindowContainer);
-})
+});
 
 if (savedDoneArr.length) {
     for (let todo of savedDoneArr) {
         doneArr.push(todo);
         const itemContainer = renderTodoItem(doneBlockContainer, todo);
         doneBtnFunction(itemContainer);
-        getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+        getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
     }
 }
 
@@ -378,10 +372,11 @@ if (savedTodoArr.length) {
         todoArr.push(todo);
         const itemContainer = renderTodoItem(todoBlockContainer, todo);
         todoBtnFunction(itemContainer);
-        getAmount(todoBlockHeaderAmount, todoArr, progressBlockHeaderAmount, progressArr, doneBlockHeaderAmount, doneArr);
+        getCounter(todoBlockHeaderCounter, todoArr, progressBlockHeaderCounter, progressArr, doneBlockHeaderCounter, doneArr);
 
     }
 }
+
 if (savedProgressArr.length) {
     for (let todo of savedProgressArr) {
         handleProgressTodo(todo);
@@ -389,3 +384,5 @@ if (savedProgressArr.length) {
 }
 
 currentTime(timeNow);
+
+

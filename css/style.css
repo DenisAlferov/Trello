@@ -36,7 +36,6 @@ button {
 }
 .wrapper {
     padding: 10px;
-
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -74,7 +73,6 @@ button {
     background-color: #7fff94;
     border-radius: 20px;
     border: 1px solid gray;
-
 }
 .progressBlockHeader {
     background: #aaa5a5;
@@ -104,9 +102,9 @@ button {
     font-size: 16px;
     padding: 10px;
 }
-.todoBlockHeaderAmount,
-.progressBlockHeaderAmount,
-.doneBlockHeaderAmount {
+.todoBlockHeaderCounter,
+.progressBlockHeaderCounter,
+.doneBlockHeaderCounter {
     font-size: 20px;
     font-weight: 700;
 }
@@ -117,7 +115,6 @@ button {
     flex-direction: column;
     flex-grow: 1;
     width: 100%;
-
 }
 .newWindowContainer,
 .editNewWindowContainer {
@@ -182,6 +179,14 @@ button {
     background-color: rgba(0, 128, 0, 0.43);
     border-radius: 10px;
 }
+.doneNewWindowYesBtn{
+    background-color: rgba(255, 0, 0, 0.55);
+    border-radius: 10px;
+}
+.doneNewWindowNoBtn{
+    background-color: rgba(0, 128, 0, 0.43);
+    border-radius: 10px;
+}
 .newWindowCancelBtn,
 .newWindowAddBtn,
 .doneNewWindowYesBtn,
@@ -207,7 +212,7 @@ button {
     border-radius: 10px;
 }
 .itemBlock {
-    border: 2px solid black;
+    border: 2px solid gray;
     width: 100%;
     margin-top: 10px;
     border-radius: 10px;
@@ -227,6 +232,9 @@ button {
 .title {
     max-width: 60%;
     font-weight: 700;
+    border-radius: 5px;
+    border: 2px solid gray;
+    padding: 0 10px;
 }
 .btnContainer {
     display: flex;
@@ -249,4 +257,76 @@ button {
     padding: 5px;
 }
 
+@media (min-width: 500px) and (max-width: 768px){
+    *{
+        font-size: 12px;
+    }
+    .todoBlockBtn,
+    .doneBlockBtn,
+    .todoBlockHeaderCounter,
+    .progressBlockHeaderCounter,
+    .doneBlockHeaderCounter {
+        font-size: 12px;
+    }
+    .delBtn,
+    .editBtn {
+        font-size: 10px;
+    }
+    .title{
+        margin: 0 auto;
+    }
+    .itemBlockHeader,
+    .itemBlockMain,
+    .itemBlockFooter {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
 
+        gap: 15px;
+        padding: 5px;
+    }
+    .moveToProgressBtn {
+        margin: 0 auto;
+        width: 50%;
+    }
+}
+@media (min-width: 320px) and (max-width: 500px){
+    #main_block {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        opacity: 0.8;
+        min-height: 70vh;
+        border-radius: 20px;
+        border: 1px solid gray;
+        padding: 15px;
+    }
+    .todoBlock{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 20px;
+    }
+    .progressBlock{
+        width: 100%;
+        margin-top: 20px;
+        border: 1px solid black;
+        border-radius: 20px;
+    }
+    .doneBlock{
+        width: 100%;
+        margin-top: 20px;
+        border: 1px solid black;
+        border-radius: 20px;
+    }
+    .title{
+        padding: 10px;
+    }
+    .activeNewWindow {
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        margin: 0 auto;
+        width: 80%;
+
+    }
+}

@@ -12,10 +12,10 @@ export const updateLocalStorage = (todoArray, progressArray, doneArray) => {
     localStorage.setItem('doneArr', JSON.stringify(doneArray));
 };
 
-export const getAmount = (todoAmount, todoArr, progressAmount, progressArr, doneAmount, doneArr) => {
-    todoAmount.innerText = todoArr.length;
-    progressAmount.innerText = progressArr.length;
-    doneAmount.innerText = doneArr.length;
+export const getCounter = (todoCounter, todoArr, progressCounter, progressArr, doneCounter, doneArr) => {
+    todoCounter.innerText = todoArr.length;
+    progressCounter.innerText = progressArr.length;
+    doneCounter.innerText = doneArr.length;
 };
 
 export const changeStyletoProgress = (itemBlock) => {
