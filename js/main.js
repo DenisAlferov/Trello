@@ -236,65 +236,43 @@ const todoBtnFunction = (itemBlock) => {
     itemBlock.onclick = () => {
         itemBlock.style.backgroundColor = 'rgb('+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+0.5+')';
     };
-    /////////////////////////////// Попытка drag'n'drop. Неудачная
 
-    // let currentDroppable = null;
-    //
-    // itemBlock.onmousedown = function(event) {
-    //
-    //     let shiftX = event.clientX - itemBlock.getBoundingClientRect().left;
-    //     let shiftY = event.clientY - itemBlock.getBoundingClientRect().top;
-    //
-    //     itemBlock.style.position = 'absolute';
-    //     itemBlock.style.zIndex = 1000;
-    //     itemBlock.classList.add('drop')
-    //     document.body.append(itemBlock);
-    //
-    //     moveAt(event.pageX, event.pageY);
-    //
-    //     function moveAt(pageX, pageY) {
-    //         itemBlock.style.left = pageX - shiftX + 'px';
-    //         itemBlock.style.top = pageY - shiftY + 'px';
-    //     }
-    //
-    //     function onMouseMove(event) {
-    //         moveAt(event.pageX, event.pageY);
-    //
-    //         itemBlock.hidden = true;
-    //
-    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-    //         itemBlock.hidden = false;
-    //
-    //         if (!elemBelow) return;
-    //
-    //         let droppableBelow = elemBelow.closest('.progressBlock');
-    //         if (currentDroppable != droppableBelow) {
-    //             if (currentDroppable) { leaveDroppable(currentDroppable) }
-    //             currentDroppable = droppableBelow;
-    //             if (currentDroppable) { enterDroppable(currentDroppable) }
-    //         }
-    //     }
-    //
-    //     document.addEventListener('mousemove', onMouseMove);
-    //
-    //     itemBlock.onmouseup = function() {
-    //         document.removeEventListener('mousemove', onMouseMove);
-    //         itemBlock.onmouseup = null;
-    //     };
-    //    // };
-    //
-    // function enterDroppable(elem) {
-    //     elem.style.background = 'pink';
-    // }
-    //
-    // function leaveDroppable(elem) {
-    //     elem.style.background = '';
-    // }
-    //
-    // itemBlock.ondragstart = function() {
-    //     return false;
-    // };
-    // //////////////////////////////////////////////////////////
+    newWindowContainer.onmousedown = function(event) {
+
+        let shiftX = event.clientX - newWindowContainer.getBoundingClientRect().left;
+        let shiftY = event.clientY - newWindowContainer.getBoundingClientRect().top;
+
+        newWindowContainer.style.position = 'absolute';
+        newWindowContainer.style.zIndex = '1000';
+
+        moveAt(event.pageX, event.pageY);
+
+        function moveAt(pageX, pageY) {
+            newWindowContainer.style.left = pageX - shiftX + 'px';
+            newWindowContainer.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+
+            newWindowContainer.hidden = true;
+
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            newWindowContainer.hidden = false;
+
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        newWindowContainer.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            newWindowContainer.onmouseup = null;
+        };
+
+
+
+       };
+
     };
 
 const progressBtnFunction = (itemBlock) => {
