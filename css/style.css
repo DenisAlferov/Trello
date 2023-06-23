@@ -1,0 +1,252 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+#header{
+    background-color: #c18ac9;
+    border: 1px solid gray;
+    border-radius: 20px;
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+button {
+    cursor: pointer;
+}
+.timeNow{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 105, 180, 0.76);
+    border: 1px solid gray;
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+.wrapper {
+    padding: 10px;
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.main {
+    position: relative;
+    max-width: 1220px;
+    margin: 0 auto;
+}
+#main_block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    opacity: 0.8;
+    min-height: 70vh;
+    border-radius: 20px;
+    border: 1px solid gray;
+    padding: 15px;
+}
+.todoBlock,
+.progressBlock,
+.doneBlock{
+    width: 30%;
+    margin: 0 auto;
+}
+.todoBlockHeader,
+.progressBlockHeader,
+.doneBlockHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+    opacity: 1;
+}
+.todoBlockHeader {
+    background-color: #7fff94;
+    border-radius: 20px;
+    border: 1px solid gray;
+
+}
+.progressBlockHeader {
+    background: #aaa5a5;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+.doneBlockHeader {
+    background-color: #40a7b4;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+.todoBlockBtn {
+    background-color: #7fff94;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid gray;
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 10px;
+}
+.doneBlockBtn {
+    background-color: #40a7b4;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid gray;
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 10px;
+}
+.todoBlockHeaderAmount,
+.progressBlockHeaderAmount,
+.doneBlockHeaderAmount {
+    font-size: 20px;
+    font-weight: 700;
+}
+.todoBlockContainer,
+.progressBlockContainer,
+.doneBlockContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+
+}
+.newWindowContainer,
+.editNewWindowContainer {
+    display: none;
+}
+.newWindowDoneContainer,
+.lengthNewWindowContainer {
+    background-color: #c09d9d;
+    display: none;
+}
+.activeNewWindow {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    margin: 0 auto;
+    width: 40%;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(159, 255, 127, 0.56);
+}
+.newWindowTitle,
+.doneNewWindowTitle,
+.editNewWindowTitle {
+    margin-bottom: 15px;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.lengthNewWindowTitle {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.newWindowDescription,
+.editNewWindowDescription {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    resize: none;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.newWindowBtnContainer,
+.doneNewWindowBtnContainer,
+.editNewWindowBtnContainer {
+    display: flex;
+    justify-content: space-around;
+}
+.newWindowCancelBtn{
+    background-color: rgba(255, 0, 0, 0.55);
+    border-radius: 10px;
+}
+.newWindowAddBtn{
+    background-color: rgba(0, 128, 0, 0.43);
+    border-radius: 10px;
+}
+.newWindowCancelBtn,
+.newWindowAddBtn,
+.doneNewWindowYesBtn,
+.doneNewWindowNoBtn,
+.lengthNewWindowBtn,
+.editNewWindowCancelBtn,
+.editNewWindowAddBtn {
+    padding: 10px;
+}
+.lengthNewWindowBtn {
+    display: block;
+    margin: 0 auto
+}
+.newWindowCancelBtn:hover,
+.newWindowAddBtn:hover,
+.doneNewWindowYesBtn:hover,
+.doneNewWindowNoBtn:hover {
+    background-color: #40a7b4;
+}
+.select {
+    width: 40%;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+.itemBlock {
+    border: 2px solid black;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.itemBlockHeader,
+.itemBlockMain,
+.itemBlockFooter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 5px;
+}
+.itemBlockMain {
+    color:rgb(56, 45, 63)
+}
+.title {
+    max-width: 60%;
+    font-weight: 700;
+}
+.btnContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.editBtn,
+.delBtn {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.editBtn:hover,
+.delBtn:hover,
+.moveToProgressBtn:hover {
+    transition: 0.3s;
+    background-color: #40a7b4;
+}
+.moveToProgressBtn {
+    padding: 5px;
+}
+
+
