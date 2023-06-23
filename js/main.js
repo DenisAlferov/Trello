@@ -237,7 +237,7 @@ const todoBtnFunction = (itemBlock) => {
         itemBlock.style.backgroundColor = 'rgb('+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+0.5+')';
     };
 
-    newWindowContainer.onmousedown = function(event) {
+    newWindowContainer.onmousedown = (event) => {
 
         let shiftX = event.clientX - newWindowContainer.getBoundingClientRect().left;
         let shiftY = event.clientY - newWindowContainer.getBoundingClientRect().top;
@@ -254,12 +254,7 @@ const todoBtnFunction = (itemBlock) => {
 
         function onMouseMove(event) {
             moveAt(event.pageX, event.pageY);
-
             newWindowContainer.hidden = true;
-
-            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-            newWindowContainer.hidden = false;
-
         }
 
         document.addEventListener('mousemove', onMouseMove);
@@ -268,11 +263,7 @@ const todoBtnFunction = (itemBlock) => {
             document.removeEventListener('mousemove', onMouseMove);
             newWindowContainer.onmouseup = null;
         };
-
-
-
        };
-
     };
 
 const progressBtnFunction = (itemBlock) => {
