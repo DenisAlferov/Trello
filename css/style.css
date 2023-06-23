@@ -191,10 +191,18 @@ button {
 .newWindowAddBtn,
 .doneNewWindowYesBtn,
 .doneNewWindowNoBtn,
-.lengthNewWindowBtn,
-.editNewWindowCancelBtn,
+.lengthNewWindowBtn{
+    padding: 10px;
+}
+.editNewWindowCancelBtn{
+    background-color: rgba(255, 0, 0, 0.55);
+    border-radius: 10px;
+    padding: 10px;
+}
 .editNewWindowAddBtn {
     padding: 10px;
+    background-color: rgba(0, 128, 0, 0.43);
+    border-radius: 10px;
 }
 .lengthNewWindowBtn {
     display: block;
