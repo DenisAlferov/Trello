@@ -24,6 +24,9 @@
 button {
     cursor: pointer;
 }
+.wrapper{
+    background: url("https://previews.123rf.com/images/totostark/totostark1802/totostark180200038/95816721-abstract-light-violet-and-blue-square-background-vector-illustration.jpg");
+}
 .timeNow{
     padding: 10px;
     border-radius: 10px;
@@ -236,7 +239,9 @@ button {
 .moveToProgressBtn {
     padding: 5px;
 }
-
+.drop{
+    width: 27%;
+}
 @media (min-width: 500px) and (max-width: 768px){
     *{
         font-size: 12px;

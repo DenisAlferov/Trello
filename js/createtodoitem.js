@@ -7,7 +7,7 @@ export const createTodoItem = (newWindowTitleValue, newWindowDescriptionValue, u
     const todoItem = {
         title,
         description,
-        data: date.toLocaleDateString(),
+        data: date.toLocaleTimeString(),
         workUser: userName,
         id: Date.now(),
     };

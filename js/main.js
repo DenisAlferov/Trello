@@ -3,6 +3,7 @@ import { showAddNewWindow, hideAddNewWindow, updateLocalStorage, getCounter, cha
 import { createTodoItem } from "./createtodoitem.js";
 import { renderTodoItem, renderUser } from "./render.js";
 
+
 const header = document.getElementById('header');
 const trelloLogo = document.createElement('h1');
 const timeNow = document.createElement('div');
@@ -132,7 +133,7 @@ doneNewWindowNoBtn.innerText = 'No';
 doneNewWindowYesBtn.innerText = 'Yes';
 doneNewWindowTitle.innerText = 'Did you do everything?';
 lengthNewWindowBtn.innerText = 'Well done';
-lengthNewWindowTitle.innerText = 'You have to do less that 6 todo';
+lengthNewWindowTitle.innerText = 'You have to do some "in progress" todos';
 
 newWindowTitle.setAttribute('placeholder', 'Title');
 newWindowDescription.setAttribute('placeholder', 'Description');
@@ -235,6 +236,65 @@ const todoBtnFunction = (itemBlock) => {
     itemBlock.onclick = () => {
         itemBlock.style.backgroundColor = 'rgb('+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+getRandomStart(0,255)+', '+0.5+')';
     };
+    /////////////////////////////// Попытка drag'n'drop. Неудачная
+
+    // let currentDroppable = null;
+    //
+    // itemBlock.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - itemBlock.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - itemBlock.getBoundingClientRect().top;
+    //
+    //     itemBlock.style.position = 'absolute';
+    //     itemBlock.style.zIndex = 1000;
+    //     itemBlock.classList.add('drop')
+    //     document.body.append(itemBlock);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         itemBlock.style.left = pageX - shiftX + 'px';
+    //         itemBlock.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         itemBlock.hidden = true;
+    //
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         itemBlock.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         let droppableBelow = elemBelow.closest('.progressBlock');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { leaveDroppable(currentDroppable) }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { enterDroppable(currentDroppable) }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     itemBlock.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         itemBlock.onmouseup = null;
+    //     };
+    //    // };
+    //
+    // function enterDroppable(elem) {
+    //     elem.style.background = 'pink';
+    // }
+    //
+    // function leaveDroppable(elem) {
+    //     elem.style.background = '';
+    // }
+    //
+    // itemBlock.ondragstart = function() {
+    //     return false;
+    // };
+    // //////////////////////////////////////////////////////////
     };
 
 const progressBtnFunction = (itemBlock) => {
@@ -355,3 +415,4 @@ if (savedProgressArr.length) {
 
 currentTime(timeNow);
 getUsers();
+
