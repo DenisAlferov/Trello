@@ -22,6 +22,6 @@ export const changeStyletoProgress = (itemBlock) => {
     itemBlock.classList.add('moveToProgressStyle');
 };
 
-export const changeStyletoDone = (itemBlock) => {
+export const changeStyleoDone = (itemBlock) => {
     itemBlock.classList.add('moveToDoneStyle ');
 };

@@ -240,28 +240,27 @@ button {
 .moveToProgressBtn {
     padding: 5px;
 }
+.moveToDoneStyle{
+    background-color: #40a7b4;
+}
+.moveToProgressStyle{
+    background-color: #aaa5a5;
+}
 
 @media (min-width: 500px) and (max-width: 768px){
     *{
         font-size: 12px;
     }
-    .todoBlockBtn,
-    .doneBlockBtn,
-    .todoBlockHeaderCounter,
-    .progressBlockHeaderCounter,
-    .doneBlockHeaderCounter {
+    .todoBlockBtn, .doneBlockBtn, .todoBlockHeaderCounter, .progressBlockHeaderCounter, .doneBlockHeaderCounter {
         font-size: 12px;
     }
-    .delBtn,
-    .editBtn {
+    .delBtn, .editBtn {
         font-size: 10px;
     }
     .title{
         margin: 0 auto;
     }
-    .itemBlockHeader,
-    .itemBlockMain,
-    .itemBlockFooter {
+    .itemBlockHeader, .itemBlockMain, .itemBlockFooter {
         display: flex;
         flex-direction: column;
         text-align: center;

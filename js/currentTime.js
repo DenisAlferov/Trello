@@ -16,17 +16,22 @@ export const currentTime = (timeNow) => {
 
     timeNow.innerText = `${hour} : ${min} : ${sec}`;
 
-    if (hour > 20) {
-        const greeting = document.createElement('p');
-        timeNow.append(greeting);
-        greeting.classList.add('greeting')
-        greeting.innerText = 'Good evening!';
-    } else if (hour < 6) {
+    if (hour < 6) {
         const greeting = document.createElement('p');
         timeNow.append(greeting);
         greeting.classList.add('greeting')
         greeting.innerText = 'Good night!';
-    } else {
+    } else if (hour >= 6 && hour < 12 ) {
+        const greeting = document.createElement('p');
+        timeNow.append(greeting);
+        greeting.classList.add('greeting')
+        greeting.innerText = 'Good morning!';
+    } else if (hour >= 12 && hour < 20 ) {
+        const greeting = document.createElement('p');
+        timeNow.append(greeting);
+        greeting.classList.add('greeting')
+        greeting.innerText = 'Good day!';
+    }    else if (hour >= 20) {
         const greeting = document.createElement('p');
         timeNow.append(greeting);
         greeting.classList.add('greeting')

@@ -3,7 +3,6 @@ import { showAddNewWindow, hideAddNewWindow, updateLocalStorage, getCounter, cha
 import { createTodoItem } from "./createtodoitem.js";
 import { renderTodoItem, renderUser } from "./render.js";
 
-
 const header = document.getElementById('header');
 const trelloLogo = document.createElement('h1');
 const timeNow = document.createElement('div');
@@ -114,7 +113,6 @@ doneNewWindowNoBtn.classList.add('doneNewWindowNoBtn');
 lengthNewWindowContainer.classList.add('lengthNewWindowContainer');
 lengthNewWindowTitle.classList.add('lengthNewWindowTitle');
 lengthNewWindowBtn.classList.add('lengthNewWindowBtn');
-
 
 trelloLogo.innerText = 'Trello v.7.33b';
 todoBlockHeaderTitle.innerText = 'TODO:';
@@ -248,8 +246,8 @@ const todoBtnFunction = (itemBlock) => {
         moveAt(event.pageX, event.pageY);
 
         function moveAt(pageX, pageY) {
-            newWindowContainer.style.left = pageX - shiftX + 'px';
-            newWindowContainer.style.top = pageY - shiftY + 'px';
+            newWindowContainer.style.left = pageX - shiftX - 10 + 'px';
+            newWindowContainer.style.top = pageY - shiftY - 10 + 'px';
         }
 
         function onMouseMove(event) {
@@ -263,8 +261,8 @@ const todoBtnFunction = (itemBlock) => {
             document.removeEventListener('mousemove', onMouseMove);
             newWindowContainer.onmouseup = null;
         };
-       };
     };
+};
 
 const progressBtnFunction = (itemBlock) => {
     itemBlock.addEventListener('click', (event) => {
@@ -381,6 +379,8 @@ if (savedProgressArr.length) {
         handleProgressTodo(todo);
     }
 }
+
+
 
 currentTime(timeNow);
 getUsers();
