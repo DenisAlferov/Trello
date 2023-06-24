@@ -21,9 +21,21 @@
     align-items: center;
     margin-bottom: 20px;
 }
+#main_block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    opacity: 0.8;
+
+    border-radius: 20px;
+    border: 1px solid gray;
+    padding: 15px;
+}
+
 button {
     cursor: pointer;
 }
+
 .wrapper{
     background: url("https://previews.123rf.com/images/totostark/totostark1802/totostark180200038/95816721-abstract-light-violet-and-blue-square-background-vector-illustration.jpg");
 }
@@ -45,16 +57,6 @@ button {
     position: relative;
     max-width: 1220px;
     margin: 0 auto;
-}
-#main_block {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    opacity: 0.8;
-
-    border-radius: 20px;
-    border: 1px solid gray;
-    padding: 15px;
 }
 .todoBlock, .progressBlock, .doneBlock{
     width: 30%;
@@ -221,7 +223,7 @@ button {
     font-weight: 700;
     border-radius: 5px;
     border: 2px solid gray;
-    padding: 0 10px;
+    padding: 5px 10px;
 }
 .btnContainer {
     display: flex;
@@ -312,3 +314,5 @@ button {
 
     }
 }
+
+/*# sourceMappingURL=/style.78032849.css.map */
